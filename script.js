@@ -4,36 +4,44 @@ const progressBar = document.querySelector(".progress");
 let score = 0;
 let heartInterval;
 
-function spawnHeart() {
-    if (score >= 10) return;
+if (gameArea) {
+    function spawnHeart() {
+        if (score >= 10) return;
 
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.textContent = "❤️";
-    heart.style.left = `${Math.random() * 90}vw`;
-    heart.style.top = `-50px`;
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.textContent = "❤️";
+        heart.style.left = `${Math.random() * 90}vw`;
+        heart.style.top = `-50px`;
 
-    heart.addEventListener("click", () => {
-        score++;
-        scoreElement.textContent = score;
-        progressBar.style.width = `${(score / 10) * 100}%`;
-        heart.remove();
+        heart.addEventListener("click", () => {
+            score++;
+            scoreElement.textContent = score;
+            progressBar.style.width = `${(score / 10) * 100}%`;
+            heart.remove();
 
-        if (score === 10) {
-            clearInterval(heartInterval);
-            alert("¡Felicidades! Ahora mira la sorpresa ❤️🎉");
-            window.location.href = "sorpresa.html"; 
-        }
-    });
+            if (score === 10) {
+                clearInterval(heartInterval);
+                Swal.fire({
+                    title: '¡Felicidades!',
+                    text: 'Ahora mira la sorpresa ❤️🎉',
+                    icon: 'success',
+                    confirmButtonText: 'Ver sorpresa'
+                }).then(() => {
+                    window.location.href = "pages/valentine.html";
+                });
+            }
+        });
 
-    gameArea.appendChild(heart);
+        gameArea.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 4000);
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+
+    heartInterval = setInterval(spawnHeart, 1000);
 }
-
-heartInterval = setInterval(spawnHeart, 1000);
 
 // Partículas en el fondo
 const canvas = document.getElementById("particles");

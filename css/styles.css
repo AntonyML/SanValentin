@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffebf0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+}
+
+h1 {
+    font-size: 24px;
+    color: #d63384;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background-color: #ff4081;
+    transition: width 0.3s;
+}
+
+.counter {
+    font-size: 18px;
+    color: #333;
+}
+
+#game-area {
+    position: relative;
+    width: 100vw;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Fondo de partículas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px;
+        overflow: auto;
+    }
+
+    .container {
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .progress-bar {
+        width: 150px;
+        height: 15px;
+    }
+
+    .counter {
+        font-size: 16px;
+    }
+
+    #game-area {
+        height: 50vh;
+    }
+
+    .heart {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .progress-bar {
+        width: 120px;
+        height: 12px;
+    }
+
+    .counter {
+        font-size: 14px;
+    }
+
+    #game-area {
+        height: 40vh;
+    }
+
+    .heart {
+        font-size: 1.2rem;
+    }
+}
